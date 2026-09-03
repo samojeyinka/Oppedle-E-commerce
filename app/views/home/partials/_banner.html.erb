@@ -1,0 +1,29 @@
+<div data-controller="carousel" 
+     data-carousel-index-value="0" 
+     data-carousel-interval-value="1000" 
+     class="slideshow-window">
+  
+
+  <div data-carousel-target="track" class="slideshow-track bg-yellow-500">
+    
+
+    <% adverts.each do |advert| %>
+    <div class="slide <%= advert[:bg]%> rounded-[16px] h-[200px] md:h-[300px]">
+      <h3><%= advert[:name] %></h3>
+      <p><%= advert[:desc] %></p>
+      <%= link_to "Learn More", advert[:url] %>
+    </div>
+
+   
+  <% end %>
+
+  </div>
+
+  <div class="slideshow-dots">
+   <% adverts.each do |advert| %>
+   <span data-carousel-target="dot" class="dot"></span>
+   <% end %>
+   </div>
+</div>
+
+

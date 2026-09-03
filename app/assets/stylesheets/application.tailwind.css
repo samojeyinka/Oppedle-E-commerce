@@ -37,6 +37,39 @@
 }
 
 @layer components {
+  /* ===== Slideshow / banner ===== */
+  .slideshow-window {
+    @apply relative overflow-hidden w-full  mx-auto;
+  }
+
+  /* The track holds slides side-by-side and smoothly animates its positioning */
+  .slideshow-track {
+    @apply flex w-full transition-transform duration-500 ease-in-out;
+  }
+
+  /* Each slide fills the exact width of the window container */
+  .slide {
+    @apply w-full;
+    flex: 0 0 100%;
+  }
+
+  .slide img {
+    @apply w-full block;
+  }
+
+  /* Slide indicator dots */
+  .slideshow-dots {
+    @apply flex items-center justify-center gap-1 mt-5;
+  }
+
+  .dot {
+    @apply w-4 h-4 rounded-full bg-black/40 cursor-pointer transition-colors duration-300;
+  }
+
+  .dot.active {
+    @apply bg-cyan;
+  }
+
   /* ===== Shared / global ===== */
   .page {
     @apply w-4/5 mx-auto py-7 pl-60 bg-body;
