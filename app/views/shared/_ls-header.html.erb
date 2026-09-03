@@ -14,13 +14,6 @@
                     <span>Dashboard</span>
                     <% end %>
             </li>
-           
-            <li>
-                <%= link_to admin_path do %>
-                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                    <span>Orders</span>
-                    <% end %>
-            </li>
             <li>
                 <%= link_to admin_products_path do %>
                     <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -34,39 +27,7 @@
                     <% end %>
             </li>
             <li>
-                <%= link_to admin_path do %>
-                    <i class="fa-solid fa-users nav-icon"></i>
-                    <span>Users</span>
-                    <% end %>
-            </li>
-            <li>
-                <%= link_to admin_path do %>
-                    <i class="fa fa-flag" aria-hidden="true"></i>
-                    <span>Reports</span>
-                    <% end %>
-            </li>
-            <li>
-                <%= link_to admin_path do %>
-                    <i class="fa fa-bell" aria-hidden="true"></i>
-                    <span>Notifications</span>
-                    <% end %>
-            </li>
-            <li>
-                <%= link_to admin_path do %>
-                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
-                    <span>Advertisement</span>
-                    <% end %>
-            </li>
-
-            <li>
-                <%= link_to admin_path do %>
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <span>Message</span>
-                    <% end %>
-            </li>
-
-            <li>
-                <%= link_to destroy_admin_session_path, data:{turbo_method: :delete, turbo_confirm:"Are you sure?"} do %>
+                <%= link_to destroy_user_session_path, data:{turbo_method: :delete, turbo_confirm:"Are you sure?"} do %>
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                     <span>Sign out</span>
                     <% end %>

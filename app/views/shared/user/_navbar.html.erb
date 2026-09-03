@@ -17,12 +17,52 @@
             </div>
         </div>
         <ul class="u-navbar-links">
+                <% if user_signed_in? && current_user.is_a?(User) %>
+                <% if current_user.admin? %>
                 <li>
-                    <%= link_to root_path do %>
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                        <b>Sign Up/Sign In</b>
+                    <%= link_to admin_path do %>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                        <b>Admin Dashboard</b>
                         <% end %>
                 </li>
+                <span class="un-line"></span>
+                <% else %>
+                <li>
+                    <%= link_to edit_user_registration_path do %>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                        <b>Profile</b>
+                        <% end %>
+                </li>
+                <span class="un-line"></span>
+                <li>
+                    <%= link_to orders_path do %>
+                    <i class="fa fa-box" aria-hidden="true"></i>
+                        <b>My Orders</b>
+                        <% end %>
+                </li>
+                <span class="un-line"></span>
+                <% end %>
+                <li>
+                    <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        <b>Sign Out</b>
+                        <% end %>
+                </li>
+                <% else %>
+                <li>
+                    <%= link_to new_user_session_path do %>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                        <b>Sign In</b>
+                        <% end %>
+                </li>
+                <span class="un-line"></span>
+                <li>
+                    <%= link_to new_user_registration_path do %>
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <b>Sign Up</b>
+                        <% end %>
+                </li>
+                <% end %>
 
                 <span class="un-line"></span>
 

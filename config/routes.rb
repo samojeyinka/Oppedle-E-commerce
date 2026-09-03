@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  namespace :admin do
+  namespace :admin, constraints: ->(request) { request.env['warden'].user&.admin? } do
    
     resources :products do
       resources :stocks
     end
     resources :categories
   end
-  devise_for :admins
+  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -16,11 +16,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
    root "home#index"
 
-  authenticated :admin_user do
-    root to: "admin#index", as: :admin_root
-   end
-
-   get "admin" => "admin#index"
+   get "admin" => "admin#index", constraints: ->(request) { request.env['warden'].user&.admin? }
 
    resources :products do
     post 'add_to_cart', on: :collection
@@ -28,5 +24,5 @@ Rails.application.routes.draw do
 
    resources :categories, only: [:show]
    resource :cart, only: [:show, :update, :destroy]
-   resources :orders, only: [:new, :create]
+   resources :orders, only: [:index, :new, :create]
 end

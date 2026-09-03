@@ -8,6 +8,8 @@ data-products-product-value="<%= @product.to_json %>"
             <div class="ppl-main-img-box">
                 <% if @product.productImages.any? %>
                 <%= image_tag(@product.productImages.first) %>
+                <% elsif @product.image_url.present? %>
+                <%= image_tag(@product.image_url, class:"p-image") %>
                 <% else %>
                 <%= image_tag("http://via.placeholder.com/new-crud", class:"p-image") %>
                 <% end %>
@@ -19,6 +21,10 @@ data-products-product-value="<%= @product.to_json %>"
                       <%= image_tag(image) %>
                      </div>
                           <% end %>
+                            <% elsif @product.image_url.present? %>
+                            <div class="ppl-small-img">
+                              <%= image_tag(@product.image_url, class:"crud-image") %>
+                                </div>
                             <% else %>
                             <div class="ppl-small-img">
                               <%= image_tag("http://via.placeholder.com/300", class:"crud-image") %>
@@ -65,7 +71,7 @@ data-products-product-value="<%= @product.to_json %>"
                 <button id="selectedSize" class="stock-selected-btn"></button>
             </div>
 
-            <%= button_to "Add to Cart", add_to_cart_products_path(product_id: @product.id), method: :post %>
+            <%= button_to "Add to Cart now", add_to_cart_products_path(product_id: @product.id), method: :post, params: { size: '' }, data: { products_target: "cartForm" } %>
 
         </div>
     </div>

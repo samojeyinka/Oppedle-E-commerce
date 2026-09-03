@@ -5,6 +5,8 @@
         <div class="p-image-box">
             <% if p.productImages.any? %>
             <%= image_tag(p.productImages.first) %>
+            <% elsif p.image_url.present? %>
+            <%= image_tag(p.image_url, class:"p-image") %>
             <% else %>
             <%= image_tag("http://via.placeholder.com/new-crud", class:"p-image") %>
             <% end %>

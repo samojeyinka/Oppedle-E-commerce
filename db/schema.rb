@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_20_051711) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_05_000001) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,6 +57,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_051711) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "size"
     t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
@@ -71,6 +72,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_051711) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image_url"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -90,7 +92,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_051711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "cart_id", null: false
+    t.integer "user_id"
     t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -101,6 +105,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_051711) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "image_url"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
 
@@ -122,4 +127,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_20_051711) do
   add_foreign_key "orders", "carts"
   add_foreign_key "products", "categories"
   add_foreign_key "stocks", "products"
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "role", default: 0, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role"], name: "index_users_on_role"
+  end
 end

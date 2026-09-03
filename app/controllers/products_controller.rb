@@ -12,8 +12,13 @@ class ProductsController < ApplicationController
 
     def add_to_cart
         @product = Product.find(params[:product_id])
-        @cart = Cart.find_or_create_by(id: session[:cart_id])
-        @cart_item = @cart.cart_items.build(product: @product, quantity: 1)
+        @cart = current_cart
+        @cart_item = @cart.cart_items.find_by(product: @product, size: params[:size])
+        if @cart_item
+          @cart_item.increment!(:quantity)
+        else
+          @cart_item = @cart.cart_items.build(product: @product, quantity: 1, size: params[:size])
+        end
         if @cart_item.save
           redirect_to @product, notice: "Product was successfully added to cart."
         else

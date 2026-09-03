@@ -12,8 +12,10 @@
     <div class="tc-box">
     <%= link_to category_path(category) do %>
     <div class="tc-img-box">
-        <% if category.categoryImage.present?  %>
+        <% if category.categoryImage.present? %>
         <%= image_tag(category.categoryImage) %>
+        <% elsif category.image_url.present? %>
+        <%= image_tag(category.image_url, class:"p-image") %>
         <% else %>
         <%= image_tag("http://via.placeholder.com/new-crud", class:"p-image") %>
         <% end %>

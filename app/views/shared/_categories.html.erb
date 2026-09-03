@@ -17,7 +17,7 @@
         <tbody>
           <td>
             <div class="crud-image-box">
-            <%= category.categoryImage.present? ? image_tag(category.categoryImage, class:"crud-image") : image_tag("http://via.placeholder.com/300", class:"crud-image") %>
+            <%= category.categoryImage.present? ? image_tag(category.categoryImage, class:"crud-image") : category.image_url.present? ? image_tag(category.image_url, class:"crud-image") : image_tag("http://via.placeholder.com/300", class:"crud-image") %>
           </div>
           </td>
           <td class="c-name">
@@ -27,7 +27,7 @@
             <%= category.description %>
           </td>
           <td>
-            45
+            <%= category.products.count %>
           </td>
           <td class="c-sm">
             <button><%= link_to "See more" ,[:admin, category]  %></button>

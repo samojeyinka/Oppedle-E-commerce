@@ -12,6 +12,7 @@
   <div class="c-details">
     <div class="c-details-tn">
       <%= category.categoryImage.present? ? image_tag(category.categoryImage, class:"category-image") :
+        category.image_url.present? ? image_tag(category.image_url, class:"category-image") :
         image_tag("http://via.placeholder.com/300", class:"category-image") %>
     </div>
 
