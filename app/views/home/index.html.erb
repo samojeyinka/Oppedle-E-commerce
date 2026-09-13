@@ -1,38 +1,15 @@
-<%= render "shared/user/navbar" %>
+<%= render "shared/user/navbar"
+ %>
 
-<%= render "home/partials/banner", adverts: @adverts %>
-<%= render "home/partials/categoriesBtn" %>
+<%= render "home/partials/banner", adverts: @adverts
+ %>
+<%= render "home/partials/categoriesBtn"
+ %>
 
-<div class="top-products-con mb-5">
-    <div class="tp-top-h">
-        <h3>Top selling <span>items</span></h3>
-    <%= link_to products_path do %>
-    <span>View All</span>
-    <i class="fa-solid fa-greater-than"></i>
-    <% end %>
-    </div>
-    
-    <%= render '/shared/user/products', obj:@products %>
-</div>
+  <%= render "/shared/user/trending", obj: @trending_products
+ %>
+    <%= render "/shared/user/products", obj: @explore_products
+ %>
 
-<!-- Top categories -->
-<%= render "home/partials/categorieswithimage" %>
-
-<div class="top-categories-con mt-3">
-    <div class="tp-top-h">
-        <h3>Latest <span>Items</span></h3>
-    </div>
-    <%= render '/shared/user/products', obj:@latestcatproducts %>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
+<%= render "/shared/footer", obj: @footer_categories
+ %>

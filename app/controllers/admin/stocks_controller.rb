@@ -21,7 +21,7 @@ class Admin::StocksController < AdminController
   def edit
     @product = Product.find(params[:product_id])
     @admin_stock = Stock.find(params[:id])
-  end 
+  end
 
   # POST /admin/stocks or /admin/stocks.json
   def create
@@ -52,8 +52,8 @@ class Admin::StocksController < AdminController
     end
   end
 
-  # DELETE /admin/stocks/1 or /admin/stocks/1.json
- # DELETE /admin/stocks/1 or /admin/stocks/1.json
+# DELETE /admin/stocks/1 or /admin/stocks/1.json
+# DELETE /admin/stocks/1 or /admin/stocks/1.json
 def destroy
   @admin_stock.destroy!
 
@@ -72,6 +72,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def admin_stock_params
-      params.require(:stock).permit( :amount, :size)
+      params.require(:stock).permit(:amount, :size)
     end
 end

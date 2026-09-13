@@ -9,14 +9,14 @@ Category.delete_all
 User.where.not(role: :admin).delete_all
 
 puts "Creating admin user..."
-User.find_or_create_by!(email: "admin@istore.com") do |user|
+User.find_or_create_by!(email: "admin@oppedle.com") do |user|
   user.password = "password123"
   user.password_confirmation = "password123"
   user.role = :admin
 end
 
 puts "Creating buyer user..."
-User.find_or_create_by!(email: "buyer@istore.com") do |user|
+User.find_or_create_by!(email: "buyer@oppedle.com") do |user|
   user.password = "password123"
   user.password_confirmation = "password123"
   user.role = :buyer
@@ -59,10 +59,10 @@ end
 
 puts "Creating stocks..."
 Product.find_each do |product|
-  sizes = product.category.name == "Laptops" ? ["14 inch", "15 inch", "16 inch"] :
-          product.category.name == "Smartphones" ? ["128GB", "256GB", "512GB"] :
-          product.category.name == "Tablets" ? ["64GB", "128GB", "256GB"] :
-          ["One Size"]
+  sizes = product.category.name == "Laptops" ? [ "14 inch", "15 inch", "16 inch" ] :
+          product.category.name == "Smartphones" ? [ "128GB", "256GB", "512GB" ] :
+          product.category.name == "Tablets" ? [ "64GB", "128GB", "256GB" ] :
+          [ "One Size" ]
 
   sizes.each do |size|
     Stock.create!(

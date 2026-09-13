@@ -1,0 +1,54 @@
+<footer class="footer flex flex-col md:flex-row items-start justify-between py-6 gap-5">
+
+  <!-- Column 1 -->
+  <div class="footer-column flex flex-col gap-3">
+    <div>
+      <%= link_to root_path do %>
+        <div class="f">
+          <i class="fa fa-shopping-basket text-blue-800" aria-hidden="true"></i>
+          <span class="text-blue-800 text-base font-extrabold">Oppedle</span>
+        </div>
+      <% end %>
+    </div>
+    <p>Your premium destination for modern<br> lifestyle products. Clean, simple, and<br> always authentic.</p>
+  </div>
+
+  <!-- Column 2 -->
+  <div class="footer-column flex flex-col gap-3">
+    <h3 class="font-semibold">Shop</h3>
+    <% obj.each do |category| %>
+      <%= link_to category[:name], category[:slug]
+ %>
+    <% end %>
+  </div>
+
+  <!-- Column 3 -->
+  <div class="footer-column flex flex-col gap-3">
+    <h3 class="font-semibold">Help</h3>
+    <a href="#">Track Order</a>
+    <a href="#">Returns & Exchanges</a>
+    <a href="#">Shipping Info</a>
+    <a href="#">Contact Support</a>
+  </div>
+
+  <!-- Column 4 -->
+  <div class="footer-column flex flex-col gap-3">
+    <h3 class="font-semibold">Company</h3>
+    <a href="#">About Us</a>
+    <a href="#">Careers</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </div>
+
+  <!-- Copyright section moved out of the flex row or handled differently depending on layout goals -->
+</footer>
+
+<!-- Bottom Bar outside the main footer row -->
+<div class="flex flex-col md:flex-row justify-between my-5 items-center">
+  <p>© 2024 Oppedle Marketplace. All rights reserved.</p>
+  <div class="flex gap-4 mt-4 md:mt-0">
+    <a class="hover:text-primary transition-colors" href="#">Twitter</a>
+    <a class="hover:text-primary transition-colors" href="#">Instagram</a>
+    <a class="hover:text-primary transition-colors" href="#">Facebook</a>
+  </div>
+</div>

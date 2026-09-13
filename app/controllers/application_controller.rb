@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
     before_action :set_cart, :reject_stale_sessions
     helper_method :current_cart
-    
+
     private
-    
+
     def set_cart
       if session[:cart_id]
         @current_cart = Cart.find_by(id: session[:cart_id])
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
         sign_out(:user)
       end
     end
-  
+
     def current_cart
       @current_cart
     end

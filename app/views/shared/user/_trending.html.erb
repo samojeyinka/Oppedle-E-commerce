@@ -1,0 +1,68 @@
+
+
+<div data-controller="horizontal-scroll" class="relative my-5">
+
+  <button type="button" data-action="horizontal-scroll#scrollLeft" aria-label="Scroll categories left"
+    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-gray-50 shadow-sm hover:bg-gray-100 cursor-pointer">
+    <i class="fa-solid fa-angle-left text-gray-600"></i>
+  </button>
+
+    <div class="tp-top-h">
+        <h3 class="font-semibold text-xl text-gray-700">Trending Now</h3>
+    <%= link_to products_path do %>
+    <span>View All</span>
+   <i class="fa-solid fa-arrow-right-long"></i>
+    <% end %>
+    </div>
+  <div data-horizontal-scroll-target="scroller"
+    class="flex items-center gap-5 overflow-x-auto no-scrollbar scroll-smooth select-none cursor-grab active:cursor-grabbing px-12">
+  <% obj.each do |p| %>
+    <% current_price = p[:price].is_a?(Hash) ? p[:price][:current] : p[:price]
+ %>
+
+    <div class="group flex flex-col h-full shrink-0 w-72 rounded-2xl bg-white p-3 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer">
+      <div class="relative bg-[#F9F9FB] rounded-xl mb-3 aspect-[4/3] flex items-center justify-center overflow-hidden">
+        <button type="button"
+          class="absolute top-2 right-2 p-2 rounded-full bg-white shadow-sm z-10 active:scale-90 transition-transform">
+          <i class="fa-solid fa-heart <%= p[:isSaved] ? "text-red-500" : "text-gray-400"
+ %>"></i>
+        </button>
+        <%= link_to product_path(p[:slug]) do %>
+          <% if p[:thumbnail].present? %>
+            <%= image_tag p[:thumbnail], class: "object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+ %>
+          <% else %>
+            <%= image_tag "https://placehold.co/600x600", class: "object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+ %>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="flex flex-col flex-grow justify-between gap-2">
+        <div>
+          <p class="text-sm text-gray-500 mb-1"><%= p[:category][:name]
+ %></p>
+          <%= link_to product_path(p[:id]) do %>
+            <h3 class="font-semibold text-gray-800 line-clamp-2 leading-tight"><%= truncate(p[:name], length: 40)
+ %></h3>
+          <% end %>
+        </div>
+        <div class="flex items-center justify-between mt-2">
+          <span class="font-semibold text-gray-900">$<%= number_with_delimiter(current_price, precision: 2)
+ %></span>
+          <button type="button"
+            class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-md hover:opacity-90 active:scale-95 transition-all">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+  <button type="button" data-action="horizontal-scroll#scrollRight" aria-label="Scroll categories right"
+    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-gray-50 shadow hover:bg-gray-100 cursor-pointer">
+    <i class="fa-solid fa-angle-right text-gray-600"></i>
+  </button>
+
+</div>

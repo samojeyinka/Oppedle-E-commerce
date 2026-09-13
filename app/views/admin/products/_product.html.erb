@@ -4,21 +4,23 @@
       <%= product.name %>
     </h2>
     <button type="button">
-      <%= link_to "Back" , admin_products_path %>
+      <%= link_to "Back", admin_products_path %>
     </button>
   </div>
-
 
   <div class="c-details">
     <div class="c-details-tn pd-tns-flex">
       <% if product.productImages.any? %>
-        <% product.productImages.each do |image| %>
+        <% product.productImages.each
+
+
+ do |image| %>
           <%= image_tag(image) %>
             <% end %>
               <% elsif product.image_url.present? %>
-                <%= image_tag(product.image_url, class:"crud-image") %>
+                <%= image_tag(product.image_url, class: "crud-image") %>
                   <% else %>
-                    <%= image_tag("http://via.placeholder.com/300", class:"crud-image") %>
+                    <%= image_tag("http://via.placeholder.com/300", class: "crud-image") %>
                       <% end %>
     </div>
 
@@ -27,7 +29,21 @@
         ₦<%= product.price %>
       </p>
 
-      <%= link_to admin_product_stocks_path(product), class:"btn btn-warning" do %>
+      <%= link_to admin_product_stocks_path(product), class: "btn btn-warning"
+
+
+
+
+
+
+
+
+
+
+
+
+
+ do %>
         <span>Stocks</span>
         <i class="fa fa-cart" aria-hidden="true"></i>
         <% end %>
@@ -40,8 +56,6 @@
     <p class="pd-box">
       <%= product.description %>
     </p>
-
-
 
   </div>
 

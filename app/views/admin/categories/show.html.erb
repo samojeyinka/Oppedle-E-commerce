@@ -5,19 +5,34 @@
 <%= render @admin_category %>
 
   <div class="c-actions-flex">
-    <%= link_to edit_admin_category_path(@admin_category), class:"btn btn-success" do %>
+    <%= link_to edit_admin_category_path(@admin_category), class: "btn btn-success"
+
+
+ do %>
       <span>Edit</span>
       <i class="fa-solid fa-pen-to-square"></i>
       <% end %>
 
-        <%= link_to [:admin, @admin_category], data:{turbo_method: :delete, turbo_confirm:"Are you sure?"}, class:"btn
-          btn-danger" do %>
+        <%= link_to [ :admin, @admin_category ], data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn
+          btn-danger"
+
+
+
+
+
+
+
+
+
+
+
+
+
+ do %>
           <span>Delete</span>
           <i class="fa fa-trash" aria-hidden="true"></i>
           <% end %>
   </div>
-
-
 
   <!-- start -->
   <div class="category-products mt-2">
@@ -26,13 +41,7 @@
     <% if @products.empty? %>
     <p class="text-center">No product is associated with "<%= @admin_category.name %>" yet.</p>
     <% else %>
-  <%= render "shared/products", obj:@products %>
+  <%= render "shared/products", obj: @products %>
   <% end %>
   </section>
 </div>
-  
-  
-  
-  
-  
-  

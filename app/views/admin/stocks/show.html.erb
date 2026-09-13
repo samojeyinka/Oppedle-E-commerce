@@ -5,15 +5,31 @@
 <%= render @admin_stock %>
 
   <div class="c-actions-flex">
-    <%= link_to edit_admin_product_stock_path(@admin_stock.product, @admin_stock), class:"btn btn-success" do %>
+    <%= link_to edit_admin_product_stock_path(@admin_stock.product, @admin_stock), class: "btn btn-success"
+
+
+ do %>
       <span>Edit</span>
       <i class="fa-solid fa-pen-to-square"></i>
       <% end %>
 
-        <%= button_to admin_product_stock_path(@admin_stock), method: :delete, class:"btn
-          btn-danger" do %>
+        <%= button_to admin_product_stock_path(@admin_stock), method: :delete, class: "btn
+          btn-danger"
+
+
+
+
+
+
+
+
+
+
+
+
+
+ do %>
           <span>Delete</span>
           <i class="fa fa-trash" aria-hidden="true"></i>
           <% end %>
   </div>
-

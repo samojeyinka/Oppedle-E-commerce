@@ -9,37 +9,49 @@
             <th>View</th>
         </thead>
 
-        <% obj.each do |product| %>
+        <% obj.each
+
+
+ do |product| %>
             <tbody>
                 <td>
                     <div class="crud-image-box">
                         <% if product.productImages.any? %>
-                            <%= image_tag(product.productImages.first, class:"crud-image") %>
+                            <%= image_tag(product.productImages.first, class: "crud-image")
+ %>
                             <% elsif product.image_url.present? %>
-                                <%= image_tag(product.image_url, class:"crud-image") %>
+                                <%= image_tag(product.image_url, class: "crud-image")
+ %>
                                 <% else %>
-                                    <%= image_tag("http://via.placeholder.com/50", class:"crud-image") %>
+                                    <%= image_tag("http://via.placeholder.com/50", class: "crud-image")
+ %>
                                         <% end %>
                     </div>
                 </td>
                 <td class="c-name">
-                    <%= truncate(product.name,length:30) %>
+                    <%= truncate(product.name, length: 30)
+ %>
                 </td>
                 <td class="c-dp">
-                    <%= truncate(product.description, length:90) %>
+                    <%= truncate(product.description, length: 90)
+ %>
                 </td>
                 <td>
-                    ₦<%= (product.price).to_s %>
+                    ₦<%= (product.price).to_s
+ %>
                 </td>
                 <td>
-                    <%= product.category.name %>
+                    <%= product.category.name
+ %>
                 </td>
                 <td>
-                    <%= product.active %>
+                    <%= product.active
+ %>
                 </td>
                 <td class="c-sm">
                     <button>
-                        <%= link_to "See more" ,[:admin, product] %>
+                        <%= link_to "See more", [ :admin, product ]
+ %>
                     </button>
                 </td>
             </tbody>

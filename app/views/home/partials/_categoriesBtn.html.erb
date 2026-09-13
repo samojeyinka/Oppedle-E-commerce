@@ -1,32 +1,26 @@
-<div class="categories-container">
+<div data-controller="horizontal-scroll" class="relative my-5">
+  <button type="button" data-action="horizontal-scroll#scrollLeft" aria-label="Scroll categories left"
+    class="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-gray-50 shadow-sm hover:bg-gray-100 cursor-pointer">
+    <i class="fa-solid fa-angle-left text-gray-600"></i>
+  </button>
+
+  <div data-horizontal-scroll-target="scroller"
+    class="flex items-center gap-5 overflow-x-auto no-scrollbar scroll-smooth select-none cursor-grab active:cursor-grabbing px-12">
     <% @categories.each do |category| %>
-<button class="category-box"><%= link_to category.name,category_path(category) %></button>
-<% end %>
+
+    <%= link_to category[:slug] do %>
+    <div class="flex flex-col gap-1 items-center cursor-pointer shrink-0" style="scroll-snap-align: start;">
+      <div class="bg-gray-50 rounded-full py-3 px-4">
+        <i class="<%= category[:icon] %>"></i>
+      </div>
+      <p class="font-semibold text-[14px] text-gray-700"><%= link_to category[:name] %></p>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+
+  <button type="button" data-action="horizontal-scroll#scrollRight" aria-label="Scroll categories right"
+    class="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-gray-50 shadow hover:bg-gray-100 cursor-pointer">
+    <i class="fa-solid fa-angle-right text-gray-600"></i>
+  </button>
 </div>
-
-
-
-<script>
-    let isDragging = false;
-    let startPosition = 0;
-    let startScroll = 0;
-
-    document.querySelector('.categories-container').addEventListener(
-        'mousedown',(e) => {
-            isDragging = true;
-            startPosition = e.clientX;
-            startScroll = document.querySelector('.categories-container').scrollLeft;
-        });
-
-    document.addEventListener(
-        'mousemove',(e) => {
-            if (!isDragging) return;
-            const dx = e.clientX - startPosition;
-            document.querySelector('.categories-container').scrollLeft = startScroll - dx;
-        });
-
-    document.addEventListener(
-        'mouseup',(e) => {
-            isDragging = false;
-        });
-</script>

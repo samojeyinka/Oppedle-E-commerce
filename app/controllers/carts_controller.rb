@@ -3,7 +3,7 @@ class CartsController < ApplicationController
     @cart = current_cart
     @cart_items = @cart.cart_items.includes(:product)
   end
-  
+
     def update
       @cart = current_cart
       cart_item = @cart.cart_items.find(params[:cart_item_id])
@@ -14,11 +14,10 @@ class CartsController < ApplicationController
       end
       redirect_to cart_path, notice: "Cart was updated."
     end
-  
+
     def destroy
       current_cart.cart_items.destroy_all
       session[:cart_id] = nil
       redirect_to root_path, notice: "Cart was successfully cleared."
     end
-  end
-  
+end

@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     @cart_items = current_cart.cart_items.includes(:product)
   end
-  
-  
+
+
   def create
     @order = Order.new(order_params)
     @order.cart = current_cart
@@ -32,13 +32,11 @@ class OrdersController < ApplicationController
       render :new
     end
   end
-  
-  
+
+
   private
-  
+
   def order_params
     params.require(:order).permit(:email, :address)
   end
-  
-  end
-  
+end

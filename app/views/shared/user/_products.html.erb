@@ -1,27 +1,64 @@
-<div class="top-products-flex">
-    <% obj.each do |p|%>
-    <%= link_to product_path(p) do %>
-    <div class="p-box">
-        <div class="p-image-box">
-            <% if p.productImages.any? %>
-            <%= image_tag(p.productImages.first) %>
-            <% elsif p.image_url.present? %>
-            <%= image_tag(p.image_url, class:"p-image") %>
-            <% else %>
-            <%= image_tag("http://via.placeholder.com/new-crud", class:"p-image") %>
-            <% end %>
-        </div>
-        <div class="p-content">
-            <span class="p-name"><%= truncate(p.name, length:21) %></span>
-            <div class="p-price-flex">
-                <b class="p-price">₦<%= number_with_delimiter(p.price, delimiter: ',') %></b>
-            <s class="p-old-price">₦<%= number_with_delimiter(p.price + p.price/3, delimiter:',' )%></s>
-        </div>
-        <div class="p-save">
-            <small class="save-price">Save - ₦<%= number_with_delimiter(p.price/3, delimiter:',') %></small>
-        </div>
-        </div>
+
+
+<div class="my-5">
+    <div class="tp-top-h">
+        <h3 class="font-semibold text-xl text-gray-700">Explore Your <span class="text-cyan-600">Interests</span></h3>
+    <%= link_to products_path do %>
+    <span>View All</span>
+   <i class="fa-solid fa-arrow-right-long"></i>
+    <% end %>
     </div>
-    <% end %>
-    <% end %>
+<div class="top-products-flex">
+  <% obj.each do |p| %>
+
+      <div class="p-box">
+
+    <%= link_to product_path(p[:id]) do %>
+        <div class="p-image-box">
+          <% if p[:thumbnail].present? %>
+            <%= image_tag p[:thumbnail], class: "p-image"
+ %>
+          <% else %>
+            <%= image_tag "https://placehold.co/600x6000", class: "p-image"
+ %>
+          <% end %>
+        </div>
+        <% end %>
+
+        <div class="p-content">
+
+          <span class="p-name">
+            <%= link_to truncate(p[:name], length: 21), product_path(p[:id])
+ %>
+          </span>
+
+          <div class="p-price-flex">
+            <% price = p[:price].is_a?(Hash) ? p[:price][:current] : p[:price]
+ %>
+            <% previous = p[:price].is_a?(Hash) ? p[:price][:previous] : price + price / 3
+ %>
+            <b class="p-price">
+              $<%= number_with_delimiter(price)
+ %>
+            </b>
+
+            <s class="p-old-price">
+              $<%= number_with_delimiter(previous)
+ %>
+            </s>
+          </div>
+
+          <div class="flex items-center justify-between p-save">
+            <small class="save-price">
+              Save - $<%= number_with_delimiter((price / 3.0).round(2))
+ %>
+            </small>
+            <button><i class="fa fa-plus bg-cyan-800 text-[10px] p-1 rounded-full text-white"></i></button>
+          </div>
+
+        </div>
+      </div>
+
+  <% end %>
+</div>
 </div>

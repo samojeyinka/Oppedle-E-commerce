@@ -5,14 +5,14 @@
   <div class="c-top">
     <h2>Stocks</h2>
     <button type="button">
-      <%= link_to "New stock" , new_admin_product_stock_path %>
+      <%= link_to "New stock", new_admin_product_stock_path %>
     </button>
   </div>
   <section class="crud">
     <% if @admin_stocks.empty? %>
       <p class="text-center">No stock yet.</p>
       <% else %>
-        <%= render "shared/stocks" , obj:@admin_stocks %>
+        <%= render "shared/stocks", obj: @admin_stocks %>
           <% end %>
   </section>
 

@@ -1,10 +1,27 @@
-<%= form_with(model: [:admin,admin_category]) do |form| %>
+<%= form_with(model: [ :admin, admin_category ])
+
+
+ do |form| %>
   <% if admin_category.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:</h2>
 
       <ul>
-        <% admin_category.errors.each do |error| %>
+        <% admin_category.errors.each
+
+
+
+
+
+
+
+
+
+
+
+
+
+ do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -13,33 +30,31 @@
 
   <div class="crud-form">
     <div class="name-and-img-flex">
-      <%= form.text_field :name, placeholder:"Category name" %>
+      <%= form.text_field :name, placeholder: "Category name" %>
       <div>
-        
+
         <div class="image-upload">
           <label for="file-input">
             <i class="fa fa-camera" aria-hidden="true"></i>
           </label>
-      
-         <%= form.file_field :categoryImage, id:"file-input" %>
-      </div> 
+
+         <%= form.file_field :categoryImage, id: "file-input" %>
+      </div>
 
       </div>
     </div>
-  
-  
 
   <div>
-    <%= form.text_area :description, placeholder:"Say something about it.." %>
+    <%= form.text_area :description, placeholder: "Say something about it.." %>
   </div>
-   
+
   <div class="c-input">
     <%= form.label :image_url, "Or paste image URL" %>
-    <%= form.text_area :image_url, placeholder:"https://example.com/image.jpg", rows: 2 %>
+    <%= form.text_area :image_url, placeholder: "https://example.com/image.jpg", rows: 2 %>
   </div>
 
   <div class="c-btn">
     <%= form.submit %>
   </div>
-  </div>  
+  </div>
 <% end %>

@@ -7,22 +7,29 @@
             <th>View</th>
         </thead>
 
-        <% obj.each do |stock| %>
+        <% obj.each
+
+
+ do |stock| %>
             <tbody>
-            
+
                 <td class="c-name">
-                    <%= truncate(stock.product.name,length:30) %>
+                    <%= truncate(stock.product.name, length: 30)
+ %>
                 </td>
                 <td class="c-dp">
-                    <%= stock.amount %>
+                    <%= stock.amount
+ %>
                 </td>
                 <td>
-                    <%= stock.size %>
+                    <%= stock.size
+ %>
                 </td>
-            
+
                 <td class="c-sm">
                     <button>
-                        <%= link_to "See more" ,[:admin, stock.product, stock] %>
+                        <%= link_to "See more", [ :admin, stock.product, stock ]
+ %>
                     </button>
                 </td>
             </tbody>

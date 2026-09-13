@@ -4,24 +4,41 @@
 
   <% if @orders.any? %>
     <div class="orders-list">
-      <% @orders.each do |order| %>
+      <% @orders.each
+
+
+ do |order| %>
         <div class="order-card">
           <div class="order-header">
             <span class="order-date">Ordered on <%= order.created_at.strftime("%B %d, %Y") %></span>
             <span class="order-id">Order #<%= order.id %></span>
           </div>
           <div class="order-items">
-            <% order.cart.cart_items.each do |item| %>
+            <% order.cart.cart_items.each
+
+
+
+
+
+
+
+
+
+
+
+
+
+ do |item| %>
               <div class="order-item">
                 <span class="item-name"><%= item.product.name %></span>
                 <span class="item-qty">x<%= item.quantity %></span>
-                <span class="item-price">₦<%= number_with_delimiter(item.product.price * item.quantity, delimiter: ',') %></span>
+                <span class="item-price">₦<%= number_with_delimiter(item.product.price * item.quantity, delimiter: ",") %></span>
               </div>
             <% end %>
           </div>
           <div class="order-footer">
             <span class="order-address"><strong>Address:</strong> <%= order.address %></span>
-            <span class="order-total"><strong>Total:</strong> ₦<%= number_with_delimiter(order.total_price, delimiter: ',') %></span>
+            <span class="order-total"><strong>Total:</strong> ₦<%= number_with_delimiter(order.total_price, delimiter: ",") %></span>
           </div>
         </div>
       <% end %>

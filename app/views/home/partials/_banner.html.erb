@@ -1,25 +1,31 @@
 <div data-controller="carousel" 
      data-carousel-index-value="0" 
-     data-carousel-interval-value="1000" 
+     data-carousel-interval-value="3000" 
      class="slideshow-window">
   
 
-  <div data-carousel-target="track" class="slideshow-track bg-yellow-500">
+  <div data-carousel-target="track" class="slideshow-track">
     
 
     <% adverts.each do |advert| %>
-    <div class="slide <%= advert[:bg]%> rounded-[16px] h-[200px] md:h-[300px]">
-      <h3><%= advert[:name] %></h3>
-      <p><%= advert[:desc] %></p>
-      <%= link_to "Learn More", advert[:url] %>
-    </div>
+    <div class="slide flex justify-around items-center <%= advert[:bg]%> rounded-[16px] h-[200px] md:h-[300px]">
+     <div class="px-4 flex flex-col gap-1.5 md:gap-3">
+      <h3 class="font-bold text-[20px] md:text-[50px] font-inter  text-white"><%= advert[:title] %></h3>
+      <p class="text-[10.5px] md:text-[15px] md:w-[80%]  text-white font-inter text-wrap"><%= advert[:desc] %></p>
+      <button class="<%= advert[:btn][:bg] %> <%= advert[:btn][:color] %> w-[fit-content] px-2 md:px-4 py-1 md:py-2 rounded-full text-[12px] md:text-[15px] font-semibold">
+        <%= link_to advert[:btn][:placeholder], advert[:btn][:url], target:"_blank",  rel: "noopener" %>
+      </button>
+      </div>
 
-   
+      <div class="w-20 h-16 md:w-60 md:h-48">
+      <img class="w-full h-full bg-cover" src="<%= advert[:thumbnail][:url] %>" alt="<%= advert[:thumbnail][:alt] %>" />
+    </div>
+    </div>
   <% end %>
 
   </div>
 
-  <div class="slideshow-dots">
+<div class="slideshow-dots absolute bottom-3 left-1/2 -translate-x-1/2">
    <% adverts.each do |advert| %>
    <span data-carousel-target="dot" class="dot"></span>
    <% end %>

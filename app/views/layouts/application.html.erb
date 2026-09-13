@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Istore</title>
+    <title>Oppedle</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -19,10 +19,10 @@
        <% if alert.present? %>
          <p class="alert"><%= alert %></p>
        <% end %>
-       <%= render "shared/user/topbar" %>
+
        <div class="user-main">
         <div class="user-container">
-        
+
     <%= yield %>
     </div>
   </div>

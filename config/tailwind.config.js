@@ -4,8 +4,16 @@ module.exports = {
   content: [
     './public/*.html',
     './app/helpers/**/*.rb',
+    './app/controllers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*.{erb,haml,html,slim}'
+  ],
+  safelist: [
+    'bg-red-600',
+    'bg-blue-700',
+    'bg-white',
+    'text-blue-800',
+    'text-red-800'
   ],
   theme: {
     extend: {

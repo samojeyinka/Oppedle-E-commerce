@@ -1,0 +1,191 @@
+<%= render "shared/user/navbar" %>
+<section class="" >
+<div class="product-page-top" data-controller="products"
+data-products-product-value="<%= @product.to_json %>"
+>
+    <div class="product-pt-left">
+        <div class="ppl-images-flex">
+            <div class="ppl-main-img-box">
+                <% if @product[:productImages].any? %>
+                <%= image_tag(@product[:productImages].first) %>
+                <% end %>
+            </div>
+            <div class="ppl-small-images">
+                    <% if @product[:productImages].any? %>
+                      <% @product[:productImages].each do |image| %>
+                      <div class="ppl-small-img">
+                      <%= image_tag(image) %>
+                     </div>
+                          <% end %>
+                            <% elsif @product.image_url.present? %>
+                            <div class="ppl-small-img">
+                              <%= image_tag(@product.image_url, class:"crud-image") %>
+                                </div>
+                            <% else %>
+                            <div class="ppl-small-img">
+                              <%= image_tag("http://via.placeholder.com/300", class:"crud-image") %>
+                                </div>
+                              <% end %>
+            
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="product-pt-right">
+        <div class="pptr-flex">
+            <span class="text-gray-700 font-semibold">
+                <span><%= link_to @product[:category][:name], category_path(@product[:category][:slug]) %></span>
+            </span>
+
+            <h2 class="text-xl text-gray-800 font-bold">
+                <%= @product[:name] %>
+            </h2>
+
+            <div class="flex items-center gap-2 text-[13px]">
+            <div class="flex items-center gap-2 text-yellow-600">
+
+
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+
+            <p>(128 Reviews)</p>
+
+            </div>
+
+            
+            <span class="flex items-center gap-4">
+            <h3 class="font-extrabold text-gray-900 text-3xl">$<%= number_with_delimiter(@product[:price][:current], delimiter: ',') %></h3>
+        
+                <strike class="font-semibold text-gray-600 text-xl strike">$<%= number_with_delimiter(@product[:price][:previous] , delimiter:',' )%></strike>
+                    <% if @product[:price][:previous].to_f > 0  %> 
+                <p class="text-green-700 font-semibold">-<%= ((@product[:price][:previous] - @product[:price][:current]) / @product[:price][:previous]   * 100).round(0) %>%</p>
+                <% end %>
+            </span>
+
+            
+            <%# colors list %>
+
+            <div class="flex flex-col gap-2 mt-2">
+            <h2 class="text-gray-700 font-semibold text-[15px]">Color: <span class="text-gray-600">Black/Red</span></h2>
+            <div class="flex items-center gap-3">
+
+            <div class="w-5 h-5 rounded-full bg-black
+  border-1 border-white
+  ring-2 ring-blue-600 ">
+  </div>
+
+         <div class="w-5 h-5 rounded-full bg-blue-200
+  border-1 border-white
+  ring-2 ring-blue-600 ">
+  </div>
+
+         <div class="w-5 h-5 rounded-full bg-blue-600
+  border-1 border-white
+  ring-2 ring-blue-600 ">
+  </div>
+            </div>
+
+            </div>
+
+
+
+          
+
+
+            <div class="flex flex-col gap-2 mt-2">
+            <h2 class="text-gray-700 font-semibold text-[15px]">Size</h2>
+            <div class="flex items-center gap-3">
+
+          <%= select_tag :selected_size, options_for_select(@product[:sizes]), class:"w-[7rem] text-[14px] text-blue-600 font-semibold border-1 border-blue-600 rounded flex items-center justify-center gap-1  px-2 py-0.5" %>
+ 
+            </div>
+            </div>
+
+         
+               <div class="flex items-center gap-6 my-3">
+  <div class="flex items-center gap-2 text-gray-700">
+    <i class="fa-solid fa-truck text-blue-500"></i>
+    <div>
+      <p class="font-semibold text-[14px]">Free Delivery</p>
+      <small class="text-[12px]">Arrives in 2 - 3 days</small>
+    </div>
+  </div>
+  <div class="flex items-center gap-2 text-gray-700">
+    <i class="fa-solid fa-calendar text-red-500"></i>
+    <div>
+      <p class="font-semibold text-[14px]">7-Day Return</p>
+      <small class="text-[12px]">Hassle free process</small>
+    </div>
+  </div>
+</div>
+
+           
+
+            
+
+            <div class="w-full md:w-[50%] mt-2 flex items-center gap-3">
+
+                <button class="w-full text-[14px] text-blue-600 font-semibold border-1 border-blue-600 rounded flex items-center justify-center gap-1  px-2 py-0.5">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Add to Cart
+                </button>
+
+                
+                <button class="w-full text-[14px] text-white font-semibold border-1 bg-blue-600 rounded  px-2 py-0.5">
+                Buy Now
+                </button>
+
+                
+         
+            
+
+
+
+            </div>
+
+
+            
+            
+        
+
+        </div>
+
+          
+
+        <div class="mt-5">
+   
+        <h3 class="text-lg font-semibold text-gray-800">Description</h3>
+ 
+    <div class="product-description">
+    <p class="text-gray-600 text-[14px]"><%= @product[:description] %></p>
+    </div>
+</div>
+    </div>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+
+
+  <%= render "/shared/you_might_also_like", obj:@products %>
+<%= render "/shared/footer", obj: @footer_categories %>
+
+
+
+
+</section>

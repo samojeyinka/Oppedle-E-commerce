@@ -1,7 +1,7 @@
 class Admin::CategoriesController < AdminController
   before_action :set_admin_category, only: %i[ show edit update destroy ]
 
- 
+
   def index
     @admin_categories = Category.all
   end
@@ -35,7 +35,7 @@ class Admin::CategoriesController < AdminController
     end
   end
 
-  
+
   def update
     respond_to do |format|
       if @admin_category.update(admin_category_params)

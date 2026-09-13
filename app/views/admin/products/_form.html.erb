@@ -1,10 +1,27 @@
-<%= form_with(model: [:admin,admin_product]) do |form| %>
+<%= form_with(model: [ :admin, admin_product ])
+
+
+ do |form| %>
   <% if admin_product.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(admin_product.errors.count, "error") %> prohibited this admin_product from being saved:</h2>
 
       <ul>
-        <% admin_product.errors.each do |error| %>
+        <% admin_product.errors.each
+
+
+
+
+
+
+
+
+
+
+
+
+
+ do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -13,29 +30,27 @@
 
   <div class="crud-form">
     <div class="name-and-img-flex">
-      <%= form.text_field :name, placeholder:"Product name" %>
+      <%= form.text_field :name, placeholder: "Product name" %>
       <div>
-        
+
         <div class="image-upload">
           <label for="file-input">
             <i class="fa fa-camera" title="Upload multiple images" aria-hidden="true"></i>
           </label>
-      
-          <%= form.file_field :productImages, multiple: true, id:"file-input" %>
-      </div> 
+
+          <%= form.file_field :productImages, multiple: true, id: "file-input" %>
+      </div>
 
       </div>
     </div>
 
     <div class="c-input">
       <%= form.label :image_url, "Or paste image URL" %>
-      <%= form.text_area :image_url, placeholder:"https://example.com/image.jpg", rows: 2 %>
+      <%= form.text_area :image_url, placeholder: "https://example.com/image.jpg", rows: 2 %>
     </div>
-  
-  
 
   <div>
-    <%= form.text_area :description, placeholder:"Product description..." %>
+    <%= form.text_area :description, placeholder: "Product description..." %>
   </div>
 
  <div class="price-active">
@@ -52,7 +67,7 @@
 
  <div class="c-input">
   <%= form.label :category_id, style: "display: block" %>
-  <%= form.collection_select :category_id, Category.order(:name), :id,:name %>
+  <%= form.collection_select :category_id, Category.order(:name), :id, :name %>
 </div>
 
 <% unless admin_product.new_record? %>
@@ -65,8 +80,5 @@
   <%= form.submit %>
 </div>
 </div>
-   
- 
 
 <% end %>
-
